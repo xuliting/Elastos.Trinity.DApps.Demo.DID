@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
-declare let appManager: any;
+declare let appManager: AppManagerPlugin.AppManager;
 
 @Component({
   selector: 'page-home',

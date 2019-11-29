@@ -3,7 +3,7 @@ import { Platform, AlertController, ToastController } from '@ionic/angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavController } from '@ionic/angular';
 
-declare let appManager: any;
+declare let appManager: AppManagerPlugin.AppManager;
 let managerService = null;
 
 @Injectable({
