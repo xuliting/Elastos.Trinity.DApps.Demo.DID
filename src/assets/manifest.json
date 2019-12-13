@@ -30,12 +30,12 @@
   "plugins": [
     "Device",
     "SplashScreen",
-    "NetworkStatus"
+    "NetworkStatus",
+    "DIDPlugin"
   ],
   "urls": [
     "http://www.baidu.com/*",
-    "https://www.google.com",
-    "http://192.168.31.103:21636/*"
+    "https://www.google.com"
   ],
   "background_color": "#4e8ef7",
   "theme_display": "show",

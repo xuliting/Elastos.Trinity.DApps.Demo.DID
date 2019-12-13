@@ -19,12 +19,13 @@
       <h3><b>You are signed in</b></h3>
       <h3>User info:</h3>
       <ul>
+        <li><b>DID:</b> {{ did }}</li>
         <li><b>User name:</b> {{ userName }}</li>
         <li><b>Email address:</b> {{ emailAddress }}</li>
       </ul>
 
       <div>
-        <ion-button class="success" expand="full" size="large" (click)="generateApplicationProfile()" *ngIf="!applicationProfileRegistered">Register application profile</ion-button>
+        <ion-button class="success" expand="full" size="large" (click)="generateApplicationProfile()" *ngIf="!applicationProfileRegistered">Register app profile</ion-button>
         <div *ngIf="applicationProfileRegistered">
           <b>This demo application has been registered into your DID profile</b>
           <ul>

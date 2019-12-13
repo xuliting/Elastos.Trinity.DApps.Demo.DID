@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 declare let appManager: AppManagerPlugin.AppManager;
+declare let didManager: DIDPlugin.DIDManager;
 
 @Component({
   selector: 'page-home',
@@ -9,18 +10,18 @@ declare let appManager: AppManagerPlugin.AppManager;
 })
 export class HomePage {
   public signedIn = false;
+  public did: string = "";
   public userName: string = "";
   public emailAddress: string = "";
   public applicationProfileRegistered = false;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private zone: NgZone) {
   }
 
   signIn() {
     /**
      * Request some credentials to the DID application.
      */
-    var self = this;
     appManager.sendIntent("credaccess", {
       claims: [
         { name: true }, // Mandatory to receive
@@ -31,14 +32,46 @@ export class HomePage {
           }
         }
       ]
-    }, function(credentials) {
-      console.log("credentials received")
-      console.log(credentials)
-      self.signedIn = true;
+    }, (response: any) => {
+      console.log("Credential access response received", response)
 
-      self.userName = credentials.verifiableCredential[0].credentialSubject.name; // TODO - CHECK
-      self.emailAddress = credentials.verifiableCredential[0].credentialSubject.email // TODO - CHECK
+      if (response && response.result && response.result.presentation) {
+        console.log("Received a presentation, so we are now signed in.");
+        let data = response.result;
+
+        // Create a real presentation object from json data
+        didManager.VerifiablePresentationBuilder.fromJson(JSON.stringify(response.result.presentation), (presentation)=>{
+          this.zone.run(()=>{
+            this.signedIn = true;
+  
+            // Conveniently provided by the DID app in addition to the VerifiablePresentation
+            this.did = data.did;
+  
+            // Extract data from the presentation
+            let credentials = presentation.getCredentials();
+            console.log("Credentials:", credentials);
+
+            this.userName = this.findCredentialValueById(this.did, credentials, "name", "Not provided");
+            this.emailAddress = this.findCredentialValueById(this.did, credentials, "email", "Not provided");
+          });
+        });
+      }
     })
+  }
+
+  /**
+   * From a given short format credential id (fragment), retrieve the related credential 
+   * in a list of credentials.
+   */
+  findCredentialValueById(did: string, credentials: DIDPlugin.VerifiableCredential[], fragment: string, defaultValue: string) {
+    let matchingCredential = credentials.find((c)=>{
+      return c.getFragment() == fragment;
+    });
+
+    if (!matchingCredential)
+      return defaultValue;
+    else
+      return matchingCredential.getSubject()[fragment];
   }
 
   generateApplicationProfile() {
@@ -56,7 +89,7 @@ export class HomePage {
           }
         }
       ]
-    }, function(response) {
+    }, (response) => {
       console.log("application profile registered")
       console.log(response)
       self.applicationProfileRegistered = true;
