@@ -23,15 +23,13 @@ export class HomePage {
      * Request some credentials to the DID application.
      */
     appManager.sendIntent("credaccess", {
-      claims: [
-        { name: true }, // Mandatory to receive
-        {
-          email: {
-            required: false, // User can choose to tell us his email address or not
-            reason: "To send you a newsletter"
-          }
+      claims: { 
+        name: true, // Mandatory to receive
+        email: {
+          required: false, // User can choose to tell us his email address or not
+          reason: "To send you a newsletter"
         }
-      ]
+      }
     }, (response: any) => {
       console.log("Credential access response received", response)
 
@@ -80,15 +78,6 @@ export class HomePage {
      */
     var self = this;
     appManager.sendIntent("registerapplicationprofile", {
-      claims: [
-        {name: true},
-        {
-          email: {
-            required: false,
-            reason: "To send you a newsletter"
-          }
-        }
-      ]
     }, (response) => {
       console.log("application profile registered")
       console.log(response)
