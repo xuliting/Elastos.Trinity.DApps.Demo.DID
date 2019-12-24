@@ -1,13 +1,13 @@
 {
-  "id": "org.elastos.trinity.dapp.demo.did",
+  "id": "org.elastos.trinity.dapp.diddemo",
   "version": "0.0.1",
   "version_code": 1,
   "name": "DID Demo",
   "short_name": "DID Demo",
   "short_description": "Demo use cases for DID and credentials",
   "description": "Demo use cases for DID and credentials",
-  "start_url": "http://192.168.31.117:8100",
-  "type": "url",
+  "start_url": "index.html",
+  "type": "app",
   "category": "finance",
   "icons": [
     {
