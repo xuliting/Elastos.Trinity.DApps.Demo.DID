@@ -78,6 +78,16 @@ export class HomePage {
      */
     var self = this;
     appManager.sendIntent("registerapplicationprofile", {
+      identifier: "did-demo-app-profile",
+      connectactiontitle: "Reach out in DID Demo dApp",
+      customcredentialtypes: [],
+      sharedclaims: [
+        {
+          diddemoid: "abcdef"
+        }
+      ],
+      diddemoid:"abcdef",
+      otherCustomFieldDIDDemoAppWillReceiveFromConnectAppProfileIntent:"my-custom-field"
     }, (response) => {
       console.log("application profile registered")
       console.log(response)
