@@ -8,7 +8,7 @@
   "description": "Demo use cases for DID and credentials",
   "start_url": "index.html",
   "type": "app",
-  "category": "finance",
+  "category": "communication",
   "icons": [
     {
       "src": "assets/images/logo.png",
@@ -22,9 +22,9 @@
     }
   ],
   "author": {
-    "name": "Benjamin Piette",
-    "email": "benjaminpiette@elastos-fusion.org",
-    "website": ""
+    "name": "Elastos Foundation",
+    "email": "contact@elastos.org",
+    "website": "https://www.elastos.org"
   },
   "default_locale": "en",
   "plugins": [
