@@ -11,9 +11,7 @@ let managerService = null;
 })
 export class DIDDemoService {
     private handledIntentId: string;
-    private connectApplicationProfileData: {
-        // TODO
-    }
+    private connectApplicationProfileData: any;
 
     constructor(
         private platform: Platform,
