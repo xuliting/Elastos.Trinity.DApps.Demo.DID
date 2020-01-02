@@ -21,7 +21,7 @@ export class HeaderBarComponent implements OnInit {
     ngOnInit() { }
 
     minimize() {
-        appManager.minimize();
+        appManager.launcher();
     }
 
     close() {
