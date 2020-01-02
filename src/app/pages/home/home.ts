@@ -30,7 +30,7 @@ export class HomePage {
           reason: "To send you a newsletter"
         }
       }
-    }, (response: any) => {
+    }, {}, (response: any) => {
       console.log("Credential access response received", response)
 
       if (response && response.result && response.result.presentation) {
@@ -88,7 +88,7 @@ export class HomePage {
       ],
       diddemoid:"abcdef",
       otherCustomFieldDIDDemoAppWillReceiveFromConnectAppProfileIntent:"my-custom-field"
-    }, (response) => {
+    }, {}, (response) => {
       console.log("application profile registered")
       console.log(response)
       self.applicationProfileRegistered = true;
