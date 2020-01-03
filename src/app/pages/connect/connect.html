@@ -11,4 +11,11 @@
     This app is not going to do anything real here, but in a real case, the app could for example link your friend's profile to your profile, and start
     displaying your friend's messages, posts, or anything else.
   </p>
+  <br/><br/><br/>
+  <p>
+    <b>RECEIVED DATA</b>
+  </p>
+  <p *ngFor="let item of appProfileDataItems">
+    <b>{{item.key}}</b>: {{item.value}} 
+  </p>
 </ion-content>

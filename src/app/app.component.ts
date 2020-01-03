@@ -11,8 +11,6 @@ import { DIDDemoService } from './services/diddemo.service';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
-
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
     didDemoService: DIDDemoService) {
 

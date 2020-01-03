@@ -10,11 +10,12 @@ let managerService = null;
     providedIn: 'root'
 })
 export class DIDDemoService {
-    private handledIntentId: string;
-    private connectApplicationProfileData: any;
+    private handledIntentId: Number;
+    public connectApplicationProfileData: any;
 
     constructor(
         private platform: Platform,
+        private navController: NavController,
         public zone: NgZone) {
         managerService = this;
     }
@@ -25,24 +26,24 @@ export class DIDDemoService {
         // Load app manager only on real device, not in desktop browser - beware: ionic 4 bug with "desktop" or "android"/"ios"
         if (this.platform.platforms().indexOf("cordova") >= 0) {
             console.log("Listening to intent events")
-            appManager.setIntentListener(
-                this.onReceiveIntent
-            );
+            appManager.setIntentListener((intent: AppManagerPlugin.ReceivedIntent)=>{
+                this.onReceiveIntent(intent);
+            });
         }
     }
 
-    onReceiveIntent(ret) {
+    onReceiveIntent(ret: AppManagerPlugin.ReceivedIntent) {
         console.log("Intent received", ret);
-        managerService.handledIntentId = ret.intentId;
+        this.handledIntentId = ret.intentId;
 
         switch (ret.action) {
             case "connectapplicationprofile":
                 console.log("Received connectapplicationprofile intent request");
 
-                managerService.connectApplicationProfileData = ret.params;
+                this.connectApplicationProfileData = ret.params;
 
                 // Display the connection screen
-                managerService.navController.navigateRoot("/connect");
+                this.navController.navigateRoot("/connect");
                 break;
         }
     }
