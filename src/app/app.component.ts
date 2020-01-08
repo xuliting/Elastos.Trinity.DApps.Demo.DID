@@ -11,8 +11,12 @@ import { DIDDemoService } from './services/diddemo.service';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
-    didDemoService: DIDDemoService) {
+  constructor(
+    platform: Platform,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen,
+    didDemoService: DIDDemoService
+  ) {
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

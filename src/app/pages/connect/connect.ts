@@ -4,7 +4,8 @@ import { DIDDemoService } from 'src/app/services/diddemo.service';
 
 @Component({
   selector: 'page-connect',
-  templateUrl: 'connect.html'
+  templateUrl: 'connect.html',
+  styleUrls: ['connect.scss'],
 })
 export class ConnectPage {
   public appProfileDataItems: {

@@ -6,7 +6,8 @@ declare let didManager: DIDPlugin.DIDManager;
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  styleUrls: ['home.scss'],
 })
 export class HomePage {
   public signedIn = false;
@@ -23,7 +24,7 @@ export class HomePage {
      * Request some credentials to the DID application.
      */
     appManager.sendIntent("credaccess", {
-      claims: { 
+      claims: {
         name: true, // Mandatory to receive
         email: {
           required: false, // User can choose to tell us his email address or not
@@ -41,10 +42,10 @@ export class HomePage {
         didManager.VerifiablePresentationBuilder.fromJson(JSON.stringify(response.result.presentation), (presentation)=>{
           this.zone.run(()=>{
             this.signedIn = true;
-  
+
             // Conveniently provided by the DID app in addition to the VerifiablePresentation
             this.did = data.did;
-  
+
             // Extract data from the presentation
             let credentials = presentation.getCredentials();
             console.log("Credentials:", credentials);
@@ -58,7 +59,7 @@ export class HomePage {
   }
 
   /**
-   * From a given short format credential id (fragment), retrieve the related credential 
+   * From a given short format credential id (fragment), retrieve the related credential
    * in a list of credentials.
    */
   findCredentialValueById(did: string, credentials: DIDPlugin.VerifiableCredential[], fragment: string, defaultValue: string) {

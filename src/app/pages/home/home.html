@@ -1,43 +1,75 @@
-<ion-header>
+<ion-header no-border>
   <header-bar title="DID Demo"></header-bar>
 </ion-header>
 
-<ion-content padding>
-  <p>
-    Features demonstrated in this demo application:
-  </p>
-  <ul>
-    <li>Sign in using a DID and retrieve username.</li>
-    <li>Register that the signed in user uses this demo app, on his public DID profile.</li>
-    <li>Catch connection request received from the friends app, when we try to connect to a friend's application profile.</li>
-  </ul>
-  <div>
-    <div *ngIf="!signedIn">
-      <ion-button class="primary" expand="full" size="large" (click)="signIn()">Sign in</ion-button>
-    </div>
-    <div *ngIf="signedIn">
-      <h3><b>You are signed in</b></h3>
-      <h3>User info:</h3>
-      <ul>
-        <li><b>DID:</b> {{ did }}</li>
-        <li><b>User name:</b> {{ userName }}</li>
-        <li><b>Email address:</b> {{ emailAddress }}</li>
-      </ul>
+<ion-content>
+  <div class="container" padding>
 
-      <div>
-        <ion-button class="success" expand="full" size="large" (click)="generateApplicationProfile()" *ngIf="!applicationProfileRegistered">Register app profile</ion-button>
-        <div *ngIf="applicationProfileRegistered">
-          <b>This demo application has been registered into your DID profile</b>
-          <ul>
-            <li>You can now see the related credential information in the DID DApp.</li>
-            <li>If you chose to make that profile public during the registration step, your friends will be able
-              to see that you have this profile using the Friends DApp after a few minutes (blockchain confirmation time).
-            </li>
-            <li>From the friends DApp, after you see a friend's DID Demo DApp profile (so you should try this with a friend), 
-              you can click on it and it will open this DID demo application.</li>
-          </ul> 
+    <h2 no-margin padding text-center>
+      Features demonstrated in this demo application:
+    </h2>
+
+    <ul>
+      <li>Sign in using a DID and retrieve username.</li> <hr>
+      <li>Register that the signed in user uses this demo app, on his public DID profile.</li> <hr>
+      <li>Catch connection request received from the friends app, when we try to connect to a friend's application profile.</li> <hr>
+    </ul>
+
+    <div>
+
+      <div *ngIf="!signedIn" padding>
+        <did-button
+          title="Sign In"
+          textcolor="#000000"
+          textsize="16px"
+          [bgcolor]="'#fffff'"
+          [bordercolor]="'#000000'"
+          [shadow]="false"
+          (click)="signIn()"
+        >
+        </did-button>
+      </div>
+
+      <div *ngIf="signedIn">
+
+        <h2 padding text-center>You are signed in</h2>
+
+        <ul>
+          <li><b>DID:</b> {{ did.slice(0,24) }} <br> {{ did.slice(24,46) }}</li> <hr>
+          <li><b>User name:</b> {{ userName }}</li> <hr>
+          <li><b>Email address:</b> {{ emailAddress }}</li> <hr>
+        </ul>
+
+        <div>
+
+          <div padding>
+            <did-button
+              title="Register App Profile"
+              textcolor="#000000"
+              textsize="16px"
+              [bgcolor]="'#fffff'"
+              [bordercolor]="'#000000'"
+              [shadow]="false"
+              (click)="generateApplicationProfile()"
+              *ngIf="!applicationProfileRegistered"
+            ></did-button>
+          </div>
+
+          <div *ngIf="applicationProfileRegistered">
+            <b>This demo application has been registered into your DID profile</b>
+            <ul>
+              <li>You can now see the related credential information in the DID DApp.</li>
+              <li>If you chose to make that profile public during the registration step, your friends will be able
+                to see that you have this profile using the Friends DApp after a few minutes (blockchain confirmation time).
+              </li>
+              <li>From the friends DApp, after you see a friend's DID Demo DApp profile (so you should try this with a friend),
+                you can click on it and it will open this DID demo application.</li>
+            </ul>
+          </div>
+
         </div>
       </div>
+
     </div>
   </div>
 </ion-content>

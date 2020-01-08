@@ -13,6 +13,7 @@ import { ConnectPage } from './pages/connect/connect';
 
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { SharedModule } from './modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
     CommonModule,
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
     ComponentsModule,
     IonicModule.forRoot()
   ],
