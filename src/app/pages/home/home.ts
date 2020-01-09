@@ -1,5 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 declare let appManager: AppManagerPlugin.AppManager;
 declare let didManager: DIDPlugin.DIDManager;
@@ -10,13 +11,17 @@ declare let didManager: DIDPlugin.DIDManager;
   styleUrls: ['home.scss'],
 })
 export class HomePage {
-  public signedIn = false;
+  public signedIn: boolean = false;
   public did: string = "";
   public userName: string = "";
   public emailAddress: string = "";
-  public applicationProfileRegistered = false;
+  public applicationProfileRegistered: boolean = false;
 
-  constructor(public navCtrl: NavController, private zone: NgZone) {
+  constructor(
+    public navCtrl: NavController,
+    private zone: NgZone,
+    public toastController: ToastController
+  ) {
   }
 
   signIn() {
@@ -77,7 +82,7 @@ export class HomePage {
     /**
      * Ask the DID app to register an application profile
      */
-    var self = this;
+
     appManager.sendIntent("registerapplicationprofile", {
       identifier: "did-demo-app-profile",
       connectactiontitle: "Reach out in DID Demo dApp",
@@ -90,9 +95,31 @@ export class HomePage {
       diddemoid:"abcdef",
       otherCustomFieldDIDDemoAppWillReceiveFromConnectAppProfileIntent:"my-custom-field"
     }, {}, (response) => {
-      console.log("application profile registered")
-      console.log(response)
-      self.applicationProfileRegistered = true;
+      this.zone.run(() => {
+        console.log("application profile registered");
+        console.log(response);
+        this.applicationProfileRegistered = true;
+        /* this.registrationSuccess(); */
+      })
     })
   }
+
+  /* async registrationSuccess() {
+    const toast = await this.toastController.create({
+      mode: 'ios',
+      color: 'light',
+      header: 'App Registration Successful',
+      position: 'bottom',
+      buttons: [
+        {
+          side: 'end',
+          text: 'Okay',
+          handler: () => {
+            this.applicationProfileRegistered = true;
+          }
+        }
+      ]
+    });
+    toast.present();
+  } */
 }

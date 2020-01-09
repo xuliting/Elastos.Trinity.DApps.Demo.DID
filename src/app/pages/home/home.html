@@ -36,13 +36,13 @@
 
         <ul>
           <li><b>DID:</b> {{ did.slice(0,24) }} <br> {{ did.slice(24,46) }}</li> <hr>
-          <li><b>User name:</b> {{ userName }}</li> <hr>
+          <li><b>Name:</b> {{ userName }}</li> <hr>
           <li><b>Email address:</b> {{ emailAddress }}</li> <hr>
         </ul>
 
         <div>
 
-          <div padding>
+          <div padding *ngIf="!applicationProfileRegistered">
             <did-button
               title="Register App Profile"
               textcolor="#000000"
@@ -51,19 +51,19 @@
               [bordercolor]="'#000000'"
               [shadow]="false"
               (click)="generateApplicationProfile()"
-              *ngIf="!applicationProfileRegistered"
             ></did-button>
           </div>
 
           <div *ngIf="applicationProfileRegistered">
-            <b>This demo application has been registered into your DID profile</b>
+            <h2 padding text-center>This demo application has been registered into your DID profile</h2>
             <ul>
-              <li>You can now see the related credential information in the DID DApp.</li>
-              <li>If you chose to make that profile public during the registration step, your friends will be able
+              <li>You can now see the related credential information in the DID DApp.</li> <hr>
+              <li>
+                If you chose to make that profile public during the registration step, your friends will be able
                 to see that you have this profile using the Friends DApp after a few minutes (blockchain confirmation time).
-              </li>
+              </li> <hr>
               <li>From the friends DApp, after you see a friend's DID Demo DApp profile (so you should try this with a friend),
-                you can click on it and it will open this DID demo application.</li>
+                you can click on it and it will open this DID demo application.</li> <hr>
             </ul>
           </div>
 
