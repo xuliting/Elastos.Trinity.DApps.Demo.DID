@@ -3,10 +3,12 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { HomePage } from './pages/home/home';
 import { ConnectPage } from './pages/connect/connect';
+import { SignPage } from './pages/sign/sign';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePage },
+  { path: 'sign', component: SignPage },
   { path: 'connect', component: ConnectPage },
 ];
 

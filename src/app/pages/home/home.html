@@ -13,6 +13,7 @@
       <li>Sign in using a DID and retrieve username.</li> <hr>
       <li>Register that the signed in user uses this demo app, on his public DID profile.</li> <hr>
       <li>Catch connection request received from the friends app, when we try to connect to a friend's application profile.</li> <hr>
+      <li>Sign data using a DID</li>
     </ul>
 
     <div>
@@ -28,6 +29,17 @@
           (click)="signIn()"
         >
         </did-button>
+      </div>
+      <div padding>
+        <did-button
+          title="Sign some Data"
+          textcolor="#000000"
+          textsize="16px"
+          [bgcolor]="'#fffff'"
+          [bordercolor]="'#000000'"
+          [shadow]="false"
+          (click)="signData()"
+        ></did-button>
       </div>
 
       <div *ngIf="signedIn">

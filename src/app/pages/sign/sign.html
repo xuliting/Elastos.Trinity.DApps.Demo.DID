@@ -1,0 +1,38 @@
+<ion-header no-border>
+  <header-bar title="DID Demo @ Sign"></header-bar>
+</ion-header>
+
+<ion-content>
+  <div class="container" padding text-center>
+
+    <h2 no-margin>
+      Signing Data
+    </h2>
+    <p>
+      This demo case shows how to ask the DID dApp to sign some data using a selected DID. The DID dApp
+      is going to be launched, then you can sign and several information such as the signature itself
+      and the signing DID will be returned by the intent.
+    </p> <br/><br/>
+
+    <did-button
+      *ngIf="!dataSigned"
+      title="Sign a sample 'hello'"
+      textcolor="#000000"
+      textsize="16px"
+      [bgcolor]="'#fffff'"
+      [bordercolor]="'#000000'"
+      [shadow]="false"
+      (click)="signSampleData()"></did-button>
+
+    <div *ngIf="dataSigned">
+      <h2>Your data has been signed!</h2>
+
+      <ul>
+        <li><b>DID:</b> {{ signResult.signingdid }}</li> <hr>
+        <li><b>Public key:</b> {{ signResult.publickey }}</li> <hr>
+        <li><b>Signature:</b> {{ signResult.signature }}</li> <hr>
+      </ul>
+    </div>
+   
+  </div>
+</ion-content>

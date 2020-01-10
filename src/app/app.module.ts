@@ -14,12 +14,14 @@ import { ConnectPage } from './pages/connect/connect';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { SharedModule } from './modules/shared.module';
+import { SignPage } from './pages/sign/sign';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ConnectPage
+    ConnectPage,
+    SignPage,
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { SharedModule } from './modules/shared.module';
     MyApp,
     HomePage,
     ConnectPage,
+    SignPage,
   ],
   providers: [
     StatusBar,

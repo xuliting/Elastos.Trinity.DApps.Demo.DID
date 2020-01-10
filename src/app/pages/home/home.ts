@@ -20,6 +20,7 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private zone: NgZone,
+    private navController: NavController,
     public toastController: ToastController
   ) {
   }
@@ -102,6 +103,10 @@ export class HomePage {
         /* this.registrationSuccess(); */
       })
     })
+  }
+
+  signData() {
+    this.navController.navigateForward(["/sign"]);
   }
 
   /* async registrationSuccess() {
