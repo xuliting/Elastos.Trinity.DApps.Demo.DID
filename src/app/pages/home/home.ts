@@ -25,6 +25,10 @@ export class HomePage {
   ) {
   }
 
+  ionViewDidEnter() {
+    appManager.setVisible("show", ()=>{}, (err)=>{});
+  }
+
   signIn() {
     /**
      * Request some credentials to the DID application.

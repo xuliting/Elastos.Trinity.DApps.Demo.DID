@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from '@ionic/angular';
 import { DIDDemoService } from 'src/app/services/diddemo.service';
 
+declare let appManager: AppManagerPlugin.AppManager;
+
 @Component({
   selector: 'page-connect',
   templateUrl: 'connect.html',
@@ -22,5 +24,9 @@ export class ConnectPage {
     }
 
     console.log(this.appProfileDataItems)
+  }
+
+  ionViewDidEnter() {
+    appManager.setVisible("show", ()=>{}, (err)=>{});
   }
 }
