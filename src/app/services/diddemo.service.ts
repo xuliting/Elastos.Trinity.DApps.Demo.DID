@@ -1,6 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Platform, AlertController, ToastController } from '@ionic/angular';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Platform } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 
 declare let appManager: AppManagerPlugin.AppManager;
@@ -30,6 +29,8 @@ export class DIDDemoService {
                 this.onReceiveIntent(intent);
             });
         }
+
+        this.navController.navigateRoot("/home");
     }
 
     onReceiveIntent(ret: AppManagerPlugin.ReceivedIntent) {
