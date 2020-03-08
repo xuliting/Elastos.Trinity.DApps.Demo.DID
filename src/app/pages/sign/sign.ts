@@ -2,7 +2,8 @@ import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from '@ionic/angular';
 import { DIDDemoService } from 'src/app/services/diddemo.service';
 
-declare let appManager: AppManagerPlugin.AppManager; 
+declare let appManager: AppManagerPlugin.AppManager;
+declare let titleBarManager: TitleBarPlugin.TitleBarManager; 
 
 type SignResult = {
   signingdid: string,
@@ -29,6 +30,9 @@ export class SignPage {
 
   ionViewWillEnter() {
     this.dataSigned = false;
+
+    titleBarManager.setTitle("DIDDemo @ Sign");
+    titleBarManager.setNavigationMode(TitleBarPlugin.TitleBarNavigationMode.BACK);
   }
 
   signSampleData() {

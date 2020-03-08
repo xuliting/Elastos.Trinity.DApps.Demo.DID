@@ -4,6 +4,7 @@ import { ToastController } from '@ionic/angular';
 
 declare let appManager: AppManagerPlugin.AppManager;
 declare let didManager: DIDPlugin.DIDManager;
+declare let titleBarManager: TitleBarPlugin.TitleBarManager;
 
 @Component({
   selector: 'page-home',
@@ -27,6 +28,20 @@ export class HomePage {
 
   ionViewDidEnter() {
     appManager.setVisible("show", ()=>{}, (err)=>{});
+
+    titleBarManager.setNavigationMode(TitleBarPlugin.TitleBarNavigationMode.HOME);
+
+    // TMP TEST
+    titleBarManager.setTitle();
+    titleBarManager.setupMenuItems([
+      {key:"item1", iconPath:"assets/images/logo.png", title:"Do this action"},
+      {key:"item2", iconPath:"assets/images/logo.png", title:"Another action"}
+    ], (menuItem)=>{
+      console.log("Menu item clicked! "+JSON.stringify(menuItem))
+      console.log(menuItem)
+      console.log("Key:"+menuItem.key)
+      console.log("Title:"+menuItem.title)
+    })
   }
 
   signIn() {

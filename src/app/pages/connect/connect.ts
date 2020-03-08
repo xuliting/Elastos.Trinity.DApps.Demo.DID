@@ -3,6 +3,7 @@ import { NavController, NavParams } from '@ionic/angular';
 import { DIDDemoService } from 'src/app/services/diddemo.service';
 
 declare let appManager: AppManagerPlugin.AppManager;
+declare let titleBarManager: TitleBarPlugin.TitleBarManager; 
 
 @Component({
   selector: 'page-connect',
@@ -28,5 +29,8 @@ export class ConnectPage {
 
   ionViewDidEnter() {
     appManager.setVisible("show", ()=>{}, (err)=>{});
+
+    titleBarManager.setTitle("DIDDemo @ Connect");
+    titleBarManager.setNavigationMode(TitleBarPlugin.TitleBarNavigationMode.CLOSE);
   }
 }

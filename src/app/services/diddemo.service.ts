@@ -28,6 +28,15 @@ export class DIDDemoService {
             appManager.setIntentListener((intent: AppManagerPlugin.ReceivedIntent)=>{
                 this.onReceiveIntent(intent);
             });
+            appManager.setListener((msg: any)=>{
+                // TEST
+                console.log(JSON.stringify(msg));
+
+                if (msg.message == "navback") {
+                    console.log("NAVBACK")
+                    this.navController.pop();
+                }
+            })
         }
 
         this.navController.navigateRoot("/home");
