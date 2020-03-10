@@ -27,13 +27,12 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
-    appManager.setVisible("show", ()=>{}, (err)=>{});
+    appManager.setVisible("show");
 
     titleBarManager.setNavigationMode(TitleBarPlugin.TitleBarNavigationMode.HOME);
 
-    // TMP TEST
     titleBarManager.setTitle();
-    titleBarManager.setupMenuItems([
+    /*titleBarManager.setupMenuItems([
       {key:"item1", iconPath:"assets/images/logo.png", title:"Do this action"},
       {key:"item2", iconPath:"assets/images/logo.png", title:"Another action"}
     ], (menuItem)=>{
@@ -41,7 +40,7 @@ export class HomePage {
       console.log(menuItem)
       console.log("Key:"+menuItem.key)
       console.log("Title:"+menuItem.title)
-    })
+    })*/
   }
 
   signIn() {
