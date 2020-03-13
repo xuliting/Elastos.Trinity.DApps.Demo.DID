@@ -3,6 +3,8 @@ import { Platform } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 
 declare let appManager: AppManagerPlugin.AppManager;
+declare let titleBarManager: TitleBarPlugin.TitleBarManager;
+
 let managerService = null;
 
 @Injectable({
@@ -37,6 +39,9 @@ export class DIDDemoService {
                     this.navController.pop();
                 }
             })
+
+            titleBarManager.setBackgroundColor("#ffffff");
+            titleBarManager.setForegroundMode(TitleBarPlugin.TitleBarForegroundMode.DARK)
         }
 
         this.navController.navigateRoot("/home");
