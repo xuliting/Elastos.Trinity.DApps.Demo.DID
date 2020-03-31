@@ -1,7 +1,7 @@
 {
     "id": "org.elastos.trinity.dapp.diddemo",
-    "version": "1.0.3",
-    "version_code": 4,
+    "version": "1.1.0",
+    "version_code": 5,
     "name": "DID Demo",
     "short_name": "DID Demo",
     "short_description": "Demo use cases for DID and credentials",
