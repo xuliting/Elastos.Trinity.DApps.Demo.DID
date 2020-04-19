@@ -3,7 +3,7 @@ import { NavController, NavParams } from '@ionic/angular';
 import { DIDDemoService } from 'src/app/services/diddemo.service';
 
 declare let appManager: AppManagerPlugin.AppManager;
-declare let titleBarManager: TitleBarPlugin.TitleBarManager; 
+declare let titleBarManager: TitleBarPlugin.TitleBarManager;
 
 type SignResult = {
   signingdid: string,
@@ -32,6 +32,8 @@ export class SignPage {
     this.dataSigned = false;
 
     titleBarManager.setTitle("DIDDemo @ Sign");
+    titleBarManager.setBackgroundColor("#92e28b");
+    titleBarManager.setForegroundMode(TitleBarPlugin.TitleBarForegroundMode.DARK);
     titleBarManager.setNavigationMode(TitleBarPlugin.TitleBarNavigationMode.BACK);
   }
 

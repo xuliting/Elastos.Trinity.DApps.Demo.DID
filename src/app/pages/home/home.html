@@ -1,82 +1,122 @@
 <ion-content>
-  <div class="container" padding>
-
-    <h2 no-margin padding text-center>
-      Features demonstrated in this demo application:
-    </h2>
-
-    <ul>
-      <li>Sign in using a DID and retrieve username.</li> <hr>
-      <li>Register that the signed in user uses this demo app, on his public DID profile.</li> <hr>
-      <li>Catch connection request received from the friends app, when we try to connect to a friend's application profile.</li> <hr>
-      <li>Sign data using a DID</li>
-    </ul>
-
+  <!-- Not Signed -->
+  <div class="container" *ngIf="!signedIn">
+    <h2 no-margin text-center>Features Demonstrated</h2>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label>Sign in using a DID and retrieve username.</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label>Register that the signed in user uses this demo app, on his public DID profile.</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label>Catch connection request received from the friends app, when we try to connect to a friend's application profile.</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label>Sign data using a DID.</ion-label>
+      </ion-item>
+    </ion-list>
     <div>
-      <div *ngIf="!signedIn" padding>
+      <div padding-vertical>
         <did-button
           title="Sign In"
-          textcolor="#000000"
+          textcolor="#181d20"
           textsize="16px"
           [bgcolor]="'#fffff'"
-          [bordercolor]="'#000000'"
+          [bordercolor]="'#181d20'"
           [shadow]="false"
           (click)="signIn()"
         >
         </did-button>
       </div>
-      <div padding>
+      <div>
         <did-button
-          title="Sign some Data"
+          title="Sign Data"
+          textcolor="#181d20"
+          textsize="16px"
+          [bgcolor]="'#fffff'"
+          [bordercolor]="'#181d20'"
+          [shadow]="false"
+          (click)="signData()"
+        >
+        </did-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signed In with App Not Registered -->
+  <div class="container" *ngIf="signedIn && !applicationProfileRegistered">
+    <h2 no-margin text-center>You Are Signed In</h2>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label> <b>DID:</b> {{ did.slice(0,24) }} <br> {{ did.slice(24,46) }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label><b>Name:</b> {{ userName }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label><b>Email:</b> {{ emailAddress }}</ion-label>
+      </ion-item>
+    </ion-list>
+    <div>
+      <div padding-vertical>
+        <did-button
+          title="Register App Profile"
           textcolor="#000000"
           textsize="16px"
           [bgcolor]="'#fffff'"
           [bordercolor]="'#000000'"
           [shadow]="false"
-          (click)="signData()"
+          (click)="generateApplicationProfile()"
         ></did-button>
       </div>
-
-      <div *ngIf="signedIn">
-
-        <h2 padding text-center>You are signed in</h2>
-
-        <ul>
-          <li><b>DID:</b> {{ did.slice(0,24) }} <br> {{ did.slice(24,46) }}</li> <hr>
-          <li><b>Name:</b> {{ userName }}</li> <hr>
-          <li><b>Email address:</b> {{ emailAddress }}</li> <hr>
-        </ul>
-
-        <div>
-
-          <div padding *ngIf="!applicationProfileRegistered">
-            <did-button
-              title="Register App Profile"
-              textcolor="#000000"
-              textsize="16px"
-              [bgcolor]="'#fffff'"
-              [bordercolor]="'#000000'"
-              [shadow]="false"
-              (click)="generateApplicationProfile()"
-            ></did-button>
-          </div>
-
-          <div *ngIf="applicationProfileRegistered">
-            <h2 padding text-center>This demo application has been registered into your DID profile</h2>
-            <ul>
-              <li>You can now see the related credential information in the DID DApp.</li> <hr>
-              <li>
-                If you chose to make that profile public during the registration step, your friends will be able
-                to see that you have this profile using the Friends DApp after a few minutes (blockchain confirmation time).
-              </li> <hr>
-              <li>From the friends DApp, after you see a friend's DID Demo DApp profile (so you should try this with a friend),
-                you can click on it and it will open this DID demo application.</li> <hr>
-            </ul>
-          </div>
-
-        </div>
+      <div>
+        <did-button
+          title="Sign Data"
+          textcolor="#181d20"
+          textsize="16px"
+          [bgcolor]="'#fffff'"
+          [bordercolor]="'#181d20'"
+          [shadow]="false"
+          (click)="signData()"
+        >
+        </did-button>
       </div>
-
     </div>
   </div>
+
+  <!-- Signed In with App Registered -->
+  <div class="container" *ngIf="signedIn && applicationProfileRegistered">
+    <h2 no-margin text-center>This app is now registered in your DID profile</h2>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label>You can now see the related credential in your Identity Profile.</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label>If you choose to make this change public, others who follow your contact will able to view this app and open it</ion-label>
+      </ion-item>
+    </ion-list>
+    <div padding-vertical>
+      <did-button
+        title="Sign Data"
+        textcolor="#181d20"
+        textsize="16px"
+        [bgcolor]="'#fffff'"
+        [bordercolor]="'#181d20'"
+        [shadow]="false"
+        (click)="signData()"
+      >
+      </did-button>
+    </div>
+  </div>
+
 </ion-content>

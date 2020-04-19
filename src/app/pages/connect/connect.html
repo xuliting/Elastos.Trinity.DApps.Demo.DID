@@ -1,23 +1,18 @@
 <ion-content>
-  <div class="container" padding text-center>
-
-    <h2 no-margin>
-      Congratulations!
-    </h2>
-    <p>
+  <div class="container">
+    <h2 no-margin text-center>Congratulations!</h2>
+    <p text-center>
       If you are here, this means you could register the application profile publicly on the DID sidechain
-      and that you are trying to connect to your friend in this app.
-    </p> <br>
-    <p>
+      and that you are trying to connect to your friend in this app. <br> <br>
       This app is not going to do anything real here, but in a real case, the app could for example link your
       friend's profile to your profile, and start displaying your friend's messages, posts, or anything else.
     </p>
-    <br/><br/><br/>
-    <p>
-      <b>RECEIVED DATA</b>
-    </p>
-    <p *ngFor="let item of appProfileDataItems">
-      <b>{{item.key}}</b>: {{item.value}}
-    </p>
+    <h2 no-margin padding-top text-center>Received Data</h2>
+    <ion-list no-padding>
+      <ion-item *ngFor="let item of appProfileDataItems">
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label><b>{{item.key}}</b>: {{item.value}}</ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>

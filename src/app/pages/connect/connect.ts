@@ -3,7 +3,7 @@ import { NavController, NavParams } from '@ionic/angular';
 import { DIDDemoService } from 'src/app/services/diddemo.service';
 
 declare let appManager: AppManagerPlugin.AppManager;
-declare let titleBarManager: TitleBarPlugin.TitleBarManager; 
+declare let titleBarManager: TitleBarPlugin.TitleBarManager;
 
 @Component({
   selector: 'page-connect',
@@ -31,6 +31,8 @@ export class ConnectPage {
     appManager.setVisible("show", ()=>{}, (err)=>{});
 
     titleBarManager.setTitle("DIDDemo @ Connect");
+    titleBarManager.setBackgroundColor("#92e28b");
+    titleBarManager.setForegroundMode(TitleBarPlugin.TitleBarForegroundMode.DARK);
     titleBarManager.setNavigationMode(TitleBarPlugin.TitleBarNavigationMode.CLOSE);
   }
 }

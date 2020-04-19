@@ -28,7 +28,8 @@ export class HomePage {
 
   ionViewDidEnter() {
     appManager.setVisible("show");
-
+    titleBarManager.setBackgroundColor("#92e28b");
+    titleBarManager.setForegroundMode(TitleBarPlugin.TitleBarForegroundMode.DARK);
     titleBarManager.setNavigationMode(TitleBarPlugin.TitleBarNavigationMode.HOME);
 
     titleBarManager.setTitle();

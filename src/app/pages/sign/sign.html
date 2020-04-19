@@ -1,34 +1,41 @@
 <ion-content>
-  <div class="container" padding text-center>
-
-    <h2 no-margin>
-      Signing Data
-    </h2>
-    <p>
+  <div class="container" *ngIf="!dataSigned">
+    <h2 no-margin text-center>Signing Data</h2>
+    <p text-center>
       This demo case shows how to ask the DID dApp to sign some data using a selected DID. The DID dApp
       is going to be launched, then you can sign and several information such as the signature itself
       and the signing DID will be returned by the intent.
-    </p> <br/><br/>
-
-    <did-button
-      *ngIf="!dataSigned"
-      title="Sign a sample 'hello'"
-      textcolor="#000000"
-      textsize="16px"
-      [bgcolor]="'#fffff'"
-      [bordercolor]="'#000000'"
-      [shadow]="false"
-      (click)="signSampleData()"></did-button>
-
-    <div *ngIf="dataSigned">
-      <h2>Your data has been signed!</h2>
-
-      <ul>
-        <li><b>DID:</b> {{ signResult.signingdid }}</li> <hr>
-        <li><b>Public key:</b> {{ signResult.publickey }}</li> <hr>
-        <li><b>Signature:</b> {{ signResult.signature }}</li> <hr>
-      </ul>
+    </p>
+    <div padding-vertical>
+      <did-button
+        *ngIf="!dataSigned"
+        title="Sign a sample 'hello'"
+        textcolor="#000000"
+        textsize="16px"
+        [bgcolor]="'#fffff'"
+        [bordercolor]="'#000000'"
+        [shadow]="false"
+        (click)="signSampleData()">
+      </did-button>
     </div>
-   
+  </div>
+
+  <div class="container" *ngIf="dataSigned">
+    <h2 no-margin text-center>Your Data is Signed!</h2>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label> <b>DID:</b> {{ signResult.signingdid }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label><b>Public Key:</b> {{ signResult.publickey }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="play" mode="ios"></ion-icon>
+        <ion-label><b>Signature:</b> {{ signResult.signature }}</ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>
+

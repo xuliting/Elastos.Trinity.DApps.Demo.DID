@@ -1,17 +1,36 @@
 .container {
   min-height: 100%;
-  //background-image: linear-gradient(-225deg, rgb(181, 247, 218) 0%, rgb(148, 225, 230) 48%, rgb(144, 227, 250) 100%);
-  background-image: linear-gradient(to right, #c0f7c5 0%, #8ce1f8 100%);
+  background: #92e28b;
+  padding: 30px;
 
   h2 {
-    font-weight: 600;
+    font-weight: 800;
+    font-size: 24px;
+    color: #181d20;
   }
 
-  h3 {
-    font-weight: 600;
-  }
+  ion-list {
+    background: #92e28b;
 
-  li {
-    font-weight: 500;
+    ion-item {
+      --background:#92e28b;
+      --padding-start: 0px;
+      --inner-padding-end: 0px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+      box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.11);
+
+      ion-icon {
+        font-size: 14px;
+      }
+
+      ion-label {
+        padding-left: 15px;
+        font-weight: 500;
+        font-size: 14px;
+        white-space: pre-wrap !important;
+        color: #181d20;
+      }
+    }
   }
 }
+
