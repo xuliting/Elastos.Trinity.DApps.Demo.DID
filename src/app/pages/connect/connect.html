@@ -2,16 +2,16 @@
   <div class="container">
     <h2 no-margin text-center>Congratulations!</h2>
     <p text-center>
-      If you are here, this means you could register the application profile publicly on the DID sidechain
-      and that you are trying to connect to your friend in this app. <br> <br>
-      This app is not going to do anything real here, but in a real case, the app could for example link your
-      friend's profile to your profile, and start displaying your friend's messages, posts, or anything else.
+      If you are here, this means you can register the application profile publicly on the DID sidechain
+      and connect to your contact in this app. <br> <br>
+      This app is not going to do anything real here, but in a real case, this app could for example
+      link a contact's profile to yours, and start displaying your contact's messages, posts, or anything else.
     </p>
     <h2 no-margin padding-top text-center>Received Data</h2>
     <ion-list no-padding>
       <ion-item *ngFor="let item of appProfileDataItems">
         <ion-icon name="play" mode="ios"></ion-icon>
-        <ion-label><b>{{item.key}}</b>: {{item.value}}</ion-label>
+        <ion-label><b>{{ item.key }}</b>: {{ item.value }}</ion-label>
       </ion-item>
     </ion-list>
   </div>
