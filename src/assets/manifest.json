@@ -1,7 +1,7 @@
 {
     "id": "org.elastos.trinity.dapp.diddemo",
-    "version": "1.1.0",
-    "version_code": 5,
+    "version": "1.1.1",
+    "version_code": 6,
     "name": "DID Demo",
     "short_name": "DID Demo",
     "short_description": "Demo use cases for DID and credentials",
@@ -23,9 +23,9 @@
         }
     ],
     "author": {
-        "name": "Elastos Foundation",
-        "email": "contact@elastos.org",
-        "website": "https://www.elastos.org"
+        "name": "Trinity Tech Co., Ltd.",
+        "email": "contact@trinity-tech.io",
+        "website": "https://www.trinity-tech.io"
     },
     "default_locale": "en",
     "plugins": [
