@@ -40,8 +40,8 @@ export class DIDDemoService {
                 }
             })
 
-            titleBarManager.setBackgroundColor("#ffffff");
-            titleBarManager.setForegroundMode(TitleBarPlugin.TitleBarForegroundMode.DARK)
+            titleBarManager.setBackgroundColor("#181d20");
+            titleBarManager.setForegroundMode(TitleBarPlugin.TitleBarForegroundMode.LIGHT);
         }
 
         this.navController.navigateRoot("/home");

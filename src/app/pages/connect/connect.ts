@@ -31,8 +31,6 @@ export class ConnectPage {
     appManager.setVisible("show", ()=>{}, (err)=>{});
 
     titleBarManager.setTitle("DIDDemo @ Connect");
-    titleBarManager.setBackgroundColor("#92e28b");
-    titleBarManager.setForegroundMode(TitleBarPlugin.TitleBarForegroundMode.DARK);
     titleBarManager.setNavigationMode(TitleBarPlugin.TitleBarNavigationMode.CLOSE);
   }
 }

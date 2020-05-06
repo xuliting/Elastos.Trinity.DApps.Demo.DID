@@ -20,32 +20,16 @@
         <ion-label>Sign data using a DID.</ion-label>
       </ion-item>
     </ion-list>
-    <div>
-      <div padding-vertical>
-        <did-button
-          title="Sign In"
-          textcolor="#181d20"
-          textsize="16px"
-          [bgcolor]="'#fffff'"
-          [bordercolor]="'#181d20'"
-          [shadow]="false"
-          (click)="signIn()"
-        >
-        </did-button>
-      </div>
-      <div>
-        <did-button
-          title="Sign Data"
-          textcolor="#181d20"
-          textsize="16px"
-          [bgcolor]="'#fffff'"
-          [bordercolor]="'#181d20'"
-          [shadow]="false"
-          (click)="signData()"
-        >
-        </did-button>
-      </div>
-    </div>
+    <ion-row class="btn-row" (click)="signIn()">
+      <ion-button color="primary">
+        <ion-label>Sign In</ion-label>
+      </ion-button>
+    </ion-row>
+    <ion-row class="btn-row" (click)="signData()">
+      <ion-button color="primary">
+        <ion-label>Sign Data</ion-label>
+      </ion-button>
+    </ion-row>
   </div>
 
   <!-- Signed In with App Not Registered -->
@@ -65,31 +49,16 @@
         <ion-label><b>Email:</b> {{ emailAddress }}</ion-label>
       </ion-item>
     </ion-list>
-    <div>
-      <div padding-vertical>
-        <did-button
-          title="Register App Profile"
-          textcolor="#000000"
-          textsize="16px"
-          [bgcolor]="'#fffff'"
-          [bordercolor]="'#000000'"
-          [shadow]="false"
-          (click)="generateApplicationProfile()"
-        ></did-button>
-      </div>
-      <div>
-        <did-button
-          title="Sign Data"
-          textcolor="#181d20"
-          textsize="16px"
-          [bgcolor]="'#fffff'"
-          [bordercolor]="'#181d20'"
-          [shadow]="false"
-          (click)="signData()"
-        >
-        </did-button>
-      </div>
-    </div>
+    <ion-row class="btn-row" (click)="generateApplicationProfile()">
+      <ion-button color="primary">
+        <ion-label>Register App Profile</ion-label>
+      </ion-button>
+    </ion-row>
+    <ion-row class="btn-row" (click)="signData()">
+      <ion-button color="primary">
+        <ion-label>Sign Data</ion-label>
+      </ion-button>
+    </ion-row>
   </div>
 
   <!-- Signed In with App Registered -->
@@ -105,18 +74,11 @@
         <ion-label>If you choose to make this change public, others who follow your contact will able to view this app and open it</ion-label>
       </ion-item>
     </ion-list>
-    <div padding-vertical>
-      <did-button
-        title="Sign Data"
-        textcolor="#181d20"
-        textsize="16px"
-        [bgcolor]="'#fffff'"
-        [bordercolor]="'#181d20'"
-        [shadow]="false"
-        (click)="signData()"
-      >
-      </did-button>
-    </div>
+    <ion-row class="btn-row" (click)="signData()">
+      <ion-button color="primary">
+        <ion-label>Sign Data</ion-label>
+      </ion-button>
+    </ion-row>
   </div>
 
 </ion-content>

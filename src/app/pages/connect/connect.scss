@@ -1,24 +1,20 @@
 .container {
   min-height: 100%;
-  background: #92e28b;
   padding: 30px;
 
   h2 {
     font-weight: 800;
     font-size: 24px;
-    color: #181d20;
   }
 
   p {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
+    line-height: 1.53;
   }
 
   ion-list {
-    background: #92e28b;
-
     ion-item {
-      --background:#92e28b;
       --padding-start: 0px;
       --inner-padding-end: 0px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.11);
@@ -26,14 +22,15 @@
 
       ion-icon {
         font-size: 14px;
+        color: #21313d;
       }
 
       ion-label {
         padding-left: 15px;
-        font-weight: 500;
-        font-size: 14px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.53;
         white-space: pre-wrap !important;
-        color: #181d20;
       }
     }
   }

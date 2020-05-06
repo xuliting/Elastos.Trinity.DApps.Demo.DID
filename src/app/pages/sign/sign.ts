@@ -32,8 +32,6 @@ export class SignPage {
     this.dataSigned = false;
 
     titleBarManager.setTitle("DIDDemo @ Sign");
-    titleBarManager.setBackgroundColor("#92e28b");
-    titleBarManager.setForegroundMode(TitleBarPlugin.TitleBarForegroundMode.DARK);
     titleBarManager.setNavigationMode(TitleBarPlugin.TitleBarNavigationMode.BACK);
   }
 
