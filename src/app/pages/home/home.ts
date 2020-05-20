@@ -55,7 +55,7 @@ export class HomePage {
         }
       }
     }, {}, (response: any) => {
-      console.log("Credential access response received", response)
+      console.log("Credential access response received", JSON.stringify(response))
 
       if (response && response.result && response.result.presentation) {
         console.log("Received a presentation, so we are now signed in.");

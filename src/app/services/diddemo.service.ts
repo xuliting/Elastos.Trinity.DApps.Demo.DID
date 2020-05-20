@@ -30,18 +30,14 @@ export class DIDDemoService {
             appManager.setIntentListener((intent: AppManagerPlugin.ReceivedIntent)=>{
                 this.onReceiveIntent(intent);
             });
-            appManager.setListener((msg: any)=>{
-                // TEST
-                console.log(JSON.stringify(msg));
-
-                if (msg.message == "navback") {
-                    console.log("NAVBACK")
-                    this.navController.pop();
-                }
-            })
 
             titleBarManager.setBackgroundColor("#181d20");
             titleBarManager.setForegroundMode(TitleBarPlugin.TitleBarForegroundMode.LIGHT);
+            titleBarManager.setOnItemClickedListener((menuIcon)=>{
+              if (menuIcon.key == "back") {
+                  this.navController.back();
+              }
+            });
         }
 
         this.navController.navigateRoot("/home");

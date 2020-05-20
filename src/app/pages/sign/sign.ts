@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { DIDDemoService } from 'src/app/services/diddemo.service';
 
 declare let appManager: AppManagerPlugin.AppManager;
@@ -32,7 +32,11 @@ export class SignPage {
     this.dataSigned = false;
 
     titleBarManager.setTitle("DIDDemo @ Sign");
-    titleBarManager.setNavigationMode(TitleBarPlugin.TitleBarNavigationMode.BACK);
+    this.setTitleBarBackKeyShown(true);
+  }
+
+  ionViewWillLeave() {
+    this.setTitleBarBackKeyShown(false);
   }
 
   signSampleData() {
@@ -51,5 +55,17 @@ export class SignPage {
     }, (err)=>{
       console.error(err);
     });
+  }
+
+  setTitleBarBackKeyShown(show: boolean) {
+    if (show) {
+        titleBarManager.setIcon(TitleBarPlugin.TitleBarIconSlot.INNER_LEFT, {
+            key: "back",
+            iconPath: TitleBarPlugin.BuiltInIcon.BACK
+        });
+    }
+    else {
+        titleBarManager.setIcon(TitleBarPlugin.TitleBarIconSlot.INNER_LEFT, null);
+    }
   }
 }
