@@ -33,7 +33,7 @@ export class DIDDemoService {
 
             titleBarManager.setBackgroundColor("#181d20");
             titleBarManager.setForegroundMode(TitleBarPlugin.TitleBarForegroundMode.LIGHT);
-            titleBarManager.setOnItemClickedListener((menuIcon)=>{
+            titleBarManager.addOnItemClickedListener((menuIcon)=>{
               if (menuIcon.key == "back") {
                   this.navController.back();
               }
