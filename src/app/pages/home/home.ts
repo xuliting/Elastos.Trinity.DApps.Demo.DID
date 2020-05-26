@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 
@@ -12,11 +12,9 @@ declare let titleBarManager: TitleBarPlugin.TitleBarManager;
   styleUrls: ['home.scss'],
 })
 export class HomePage {
-  public signedIn: boolean = false;
   public did: string = "";
   public userName: string = "";
   public emailAddress: string = "";
-  public applicationProfileRegistered: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -26,20 +24,15 @@ export class HomePage {
   ) {
   }
 
+  ionViewWillEnter() {
+    titleBarManager.setIcon(TitleBarPlugin.TitleBarIconSlot.INNER_LEFT, null);
+  }
+
   ionViewDidEnter() {
     appManager.setVisible("show");
     titleBarManager.setNavigationMode(TitleBarPlugin.TitleBarNavigationMode.HOME);
 
     titleBarManager.setTitle();
-    /*titleBarManager.setupMenuItems([
-      {key:"item1", iconPath:"assets/images/logo.png", title:"Do this action"},
-      {key:"item2", iconPath:"assets/images/logo.png", title:"Another action"}
-    ], (menuItem)=>{
-      console.log("Menu item clicked! "+JSON.stringify(menuItem))
-      console.log(menuItem)
-      console.log("Key:"+menuItem.key)
-      console.log("Title:"+menuItem.title)
-    })*/
   }
 
   signIn() {
@@ -61,46 +54,22 @@ export class HomePage {
         console.log("Received a presentation, so we are now signed in.");
         let data = response.result;
 
-        // Create a real presentation object from json data
-        didManager.VerifiablePresentationBuilder.fromJson(JSON.stringify(response.result.presentation), (presentation)=>{
-          this.zone.run(()=>{
-            this.signedIn = true;
-
-            // Conveniently provided by the DID app in addition to the VerifiablePresentation
-            this.did = data.did;
-
-            // Extract data from the presentation
-            let credentials = presentation.getCredentials();
-            console.log("Credentials:", credentials);
-
-            this.userName = this.findCredentialValueById(this.did, credentials, "name", "Not provided");
-            this.emailAddress = this.findCredentialValueById(this.did, credentials, "email", "Not provided");
+        this.zone.run(()=>{
+          this.navController.navigateForward("signedin", {
+            queryParams: {
+              did: data.did,
+              presentation: response.result.presentation
+            }
           });
         });
       }
     })
   }
 
-  /**
-   * From a given short format credential id (fragment), retrieve the related credential
-   * in a list of credentials.
-   */
-  findCredentialValueById(did: string, credentials: DIDPlugin.VerifiableCredential[], fragment: string, defaultValue: string) {
-    let matchingCredential = credentials.find((c)=>{
-      return c.getFragment() == fragment;
-    });
-
-    if (!matchingCredential)
-      return defaultValue;
-    else
-      return matchingCredential.getSubject()[fragment];
-  }
-
   generateApplicationProfile() {
     /**
      * Ask the DID app to register an application profile
      */
-
     appManager.sendIntent("registerapplicationprofile", {
       identifier: "did-demo-app-profile",
       connectactiontitle: "Reach out in DID Demo dApp",
@@ -114,10 +83,7 @@ export class HomePage {
       otherCustomFieldDIDDemoAppWillReceiveFromConnectAppProfileIntent:"my-custom-field"
     }, {}, (response) => {
       this.zone.run(() => {
-        console.log("application profile registered");
-        console.log(response);
-        this.applicationProfileRegistered = true;
-        /* this.registrationSuccess(); */
+        this.navCtrl.navigateForward("appprofileregistered");
       })
     })
   }
@@ -125,23 +91,4 @@ export class HomePage {
   signData() {
     this.navController.navigateForward(["/sign"]);
   }
-
-  /* async registrationSuccess() {
-    const toast = await this.toastController.create({
-      mode: 'ios',
-      color: 'light',
-      header: 'App Registration Successful',
-      position: 'bottom',
-      buttons: [
-        {
-          side: 'end',
-          text: 'Okay',
-          handler: () => {
-            this.applicationProfileRegistered = true;
-          }
-        }
-      ]
-    });
-    toast.present();
-  } */
 }

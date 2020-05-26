@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, ToastController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 
 declare let appManager: AppManagerPlugin.AppManager;
@@ -17,6 +17,7 @@ export class DIDDemoService {
     constructor(
         private platform: Platform,
         private navController: NavController,
+        private toastCtrl: ToastController,
         public zone: NgZone) {
         managerService = this;
     }
@@ -57,5 +58,13 @@ export class DIDDemoService {
                 this.navController.navigateRoot("/connect");
                 break;
         }
+    }
+
+    public toast(_message: string, duration: number = 4000): void {
+        this.toastCtrl.create({
+            message: _message,
+            duration: duration,
+            position: 'top'
+        }).then(toast => toast.present());
     }
 }
