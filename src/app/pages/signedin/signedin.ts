@@ -101,7 +101,7 @@ export class SignedInPage {
             info: "A sub-info"
           }
       },
-      expirationdate: new Date(2024, 10, 10) // Credential will expire on 2024-10-10
+      expirationdate: new Date(2024, 10, 10).toISOString() // Credential will expire on 2024-11-10 - Note the month's 0-index...
     }, {}, (response) => {
       if (response.result.credential) {
         this.zone.run(() => {
